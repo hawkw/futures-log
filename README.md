@@ -1,4 +1,4 @@
-futures-trace
+futures-log
 =============
 
 A very simple wrapper around  [`futures-rs`] `Future`s and `Stream`s that log

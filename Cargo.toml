@@ -1,13 +1,13 @@
 [package]
-name = "futures-trace"
+name = "futures-log"
 version = "0.1.0"
 authors = ["Eliza Weisman <eliza@buoyant.io>"]
 license = "MIT"
 readme = "README.md"
 keywords = ["futures", "async", "future", "logging"]
-documentation = "https://docs.rs/futures-trace"
-homepage = "https://github.com/hawkw/futures-trace"
-repository = "https://github.com/hawkw/futures-trace"
+documentation = "https://docs.rs/futures-log"
+homepage = "https://github.com/hawkw/futures-log"
+repository = "https://github.com/hawkw/futures-log"
 description = """
 A simple logging wrapper around `futures-rs` `Future`s and `Stream`s.
 """
