@@ -10,7 +10,24 @@ use futures::{Future, Poll, Stream};
 /// and their results.
 #[derive(Debug, Clone)]
 pub struct Trace<T> {
+    name: Option<&'static str>,
     inner: T,
+}
+impl<T> Trace<T> {
+
+    /// Add a name for the underlying value, to be used
+    /// instead of calling fmt::Debug.
+    pub fn named(self, name: &'static str) -> Self {
+        self.name = Some(name);
+        self
+    }
+
+    fn get_name(&self) -> &str {
+        self.name.unwrap_or_else(|| {
+            &format!("{:?}", self.inner)
+        })
+    }
+
 }
 
 impl<F> Future for Trace<F>
@@ -24,9 +41,9 @@ where
     type Error = F::Error;
 
     fn poll(&mut self) -> Poll<Self::Item, Self::Error> {
-        trace!("{:?}.poll()", self.inner);
+        trace!("{:?}.poll()", self.get_name());
         let poll = self.inner.poll();
-        trace!("{:?}.poll() -> {:?};", self.inner, poll);
+        trace!("{:?}.poll() -> {:?};", self.get_name(), poll);
         poll
     }
 
@@ -43,9 +60,9 @@ where
     type Error = S::Error;
 
     fn poll(&mut self) -> Poll<Option<Self::Item>, Self::Error> {
-        trace!("{:?}.poll()", self.inner);
+        trace!("{:?}.poll()", self.get_name());
         let poll = self.inner.poll();
-        trace!("{:?}.poll() -> {:?};", self.inner, poll);
+        trace!("{:?}.poll() -> {:?};", self.get_name(), poll);
         poll
     }
 
@@ -54,7 +71,10 @@ where
 impl<T> From<T> for Trace<T> {
 
     fn from(inner: T) -> Self {
-        Trace { inner }
+        Trace {
+            inner,
+            name: None,
+        }
     }
 
 }
