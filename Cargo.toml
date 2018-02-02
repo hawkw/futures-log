@@ -1,0 +1,8 @@
+[package]
+name = "futures-trace"
+version = "0.1.0"
+authors = ["Eliza Weisman <eliza@buoyant.io>"]
+
+[dependencies]
+futures = "^0.1.18"
+log = "^0.4"
