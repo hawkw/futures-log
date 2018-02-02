@@ -1,6 +1,6 @@
 [package]
 name = "futures-log"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Eliza Weisman <eliza@buoyant.io>"]
 license = "MIT"
 readme = "README.md"
@@ -13,5 +13,5 @@ A simple logging wrapper around `futures-rs` `Future`s and `Stream`s.
 """
 
 [dependencies]
-futures = "^0.1.18"
+futures = "^0.1"
 log = "^0.4"
