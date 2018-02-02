@@ -34,7 +34,7 @@ where
 
 impl<S> Stream for Trace<S>
 where
-    S: Future,
+    S: Stream,
     S::Item: fmt::Debug,
     S::Error: fmt::Debug,
     S: fmt::Debug,
